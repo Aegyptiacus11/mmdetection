@@ -1,6 +1,6 @@
 
 # the new config inherits the base configs to highlight the necessary modification
-_base_ = 'swin/'
+_base_ = 'swin/retinanet_swin-t-p4-w7_fpn_1x_coco.py'
 
 # 1. dataset settings
 dataset_type = 'CocoDataset'
