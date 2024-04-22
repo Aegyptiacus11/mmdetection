@@ -1,6 +1,6 @@
 
 # the new config inherits the base configs to highlight the necessary modification
-_base_ = 'swin/faster-rcnn_swin.py'
+_base_ = 'swin/'
 
 # 1. dataset settings
 dataset_type = 'CocoDataset'
@@ -71,41 +71,9 @@ test_dataloader = dict(
 
 # explicitly over-write all the `num_classes` field from default 80 to 5.
 model = dict(
-    roi_head=dict(
-        bbox_head=dict(
-                type='Shared2FCBBoxHead',
-                # explicitly over-write all the `num_classes` field from default 80 to 5.
-                num_classes=2)))
+    bbox_head=dict(
+        type='RetinaHead',
+            num_classes=2))
 
 max_epochs = 12
 train_cfg = dict(max_epochs=max_epochs)
-
-# learning rate
-param_scheduler = [
-    dict(
-        type='LinearLR', start_factor=0.001, by_epoch=False, begin=0,
-        end=1000),
-    dict(
-        type='MultiStepLR',
-        begin=0,
-        end=max_epochs,
-        by_epoch=True,
-        milestones=[8, 11],
-        gamma=0.1)
-]
-
-# optimizer
-optim_wrapper = dict(
-    type='OptimWrapper',
-    paramwise_cfg=dict(
-        custom_keys={
-            'absolute_pos_embed': dict(decay_mult=0.),
-            'relative_position_bias_table': dict(decay_mult=0.),
-            'norm': dict(decay_mult=0.)
-        }),
-    optimizer=dict(
-        _delete_=True,
-        type='AdamW',
-        lr=0.0001,
-        betas=(0.9, 0.999),
-        weight_decay=0.05))
