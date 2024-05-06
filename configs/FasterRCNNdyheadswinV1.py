@@ -19,7 +19,7 @@ train_pipeline = [  # Training data processing pipeline
 ]
 
 train_dataloader = dict(
-    batch_size=2,
+    batch_size=1,
     num_workers=2,
     dataset=dict(
         type=dataset_type,
