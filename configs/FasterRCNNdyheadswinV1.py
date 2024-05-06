@@ -110,6 +110,4 @@ optim_wrapper = dict(
         betas=(0.9, 0.999),
         weight_decay=0.05))
 
-data = dict(
-    samples_per_gpu=1,
-    workers_per_gpu=2)
+optimizer_config=dict(_delete_=True, grad_clip=dict(max_norm=35, norm_type=2))
