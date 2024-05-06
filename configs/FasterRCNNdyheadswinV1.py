@@ -1,6 +1,6 @@
 
 # the new config inherits the base configs to highlight the necessary modification
-_base_ = 'swin/faster-rcnn_swin.py'
+_base_ = 'swin/faster-rcnn_swin_dyhead.py'
 
 # 1. dataset settings
 dataset_type = 'CocoDataset'
