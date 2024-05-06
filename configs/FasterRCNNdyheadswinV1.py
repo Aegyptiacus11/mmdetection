@@ -109,3 +109,7 @@ optim_wrapper = dict(
         lr=0.0001,
         betas=(0.9, 0.999),
         weight_decay=0.05))
+
+data = dict(
+    samples_per_gpu=1,
+    workers_per_gpu=2)
