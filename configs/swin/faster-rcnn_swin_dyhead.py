@@ -25,7 +25,14 @@ model = dict(
         with_cp=False,
         convert_weights=True,
         init_cfg=dict(type='Pretrained', checkpoint=pretrained)),
-    neck=dict(in_channels=[96, 192, 384, 768]))
+    neck=[
+        dict(
+            type='FPN',
+            in_channels=[96, 192, 384, 768],
+            out_channels=256,
+            num_outs=5),
+        dict(type='DyHead', in_channels=256, out_channels=256, num_blocks=6)
+    ])
 
 max_epochs = 12
 train_cfg = dict(max_epochs=max_epochs)
