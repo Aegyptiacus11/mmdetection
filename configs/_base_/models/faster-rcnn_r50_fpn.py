@@ -65,8 +65,8 @@ model = dict(
             assigner=dict(
                 type='MaxIoUAssigner',
                 pos_iou_thr=0.7,
-                neg_iou_thr=0.25,
-                min_pos_iou=0.25,
+                neg_iou_thr=0.3,
+                min_pos_iou=0.3,
                 match_low_quality=True,
                 ignore_iof_thr=-1),
             sampler=dict(
@@ -81,7 +81,7 @@ model = dict(
         rpn_proposal=dict(
             nms_pre=2000,
             max_per_img=1000,
-            nms=dict(type='nms', iou_threshold=0.45),
+            nms=dict(type='nms', iou_threshold=0.5),
             min_bbox_size=0),
         rcnn=dict(
             assigner=dict(
