@@ -97,7 +97,7 @@ param_scheduler = [
 fp16 = dict(loss_scale=512.)
 # optimizer
 optim_wrapper = dict(
-    type='OptimWrapper',
+    type='AmpOptimWrapper',
     paramwise_cfg=dict(
         custom_keys={
             'absolute_pos_embed': dict(decay_mult=0.),
