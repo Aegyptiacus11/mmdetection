@@ -8,6 +8,8 @@ classes = ('meteor','nonmeteor')
 data_root='/kaggle/input/datameteors/datamet'
 backend_args = None
 
+fp16 = dict(loss_scale=512.)
+
 train_pipeline = [  # Training data processing pipeline
     dict(type='LoadImageFromFile', backend_args=backend_args),  # First pipeline to load images from file path
     dict(
@@ -96,7 +98,7 @@ param_scheduler = [
 
 # optimizer
 optim_wrapper = dict(
-    type='OptimWrapper',
+    type='AmpOptimWrapper',
     paramwise_cfg=dict(
         custom_keys={
             'absolute_pos_embed': dict(decay_mult=0.),
